@@ -2,6 +2,7 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class Config(object):
     DEBUG = False
     TESTING = False
@@ -14,19 +15,22 @@ class Config(object):
     def init_app(app):
         pass
 
+
 class ProductionConfig(Config):
     DATABASE_URI = 'mysql://user:pass@localhost/dbname'
+
 
 class DevelopmentConfig(Config):
     DEBUG = True
 
+
 class TestingConfig(Config):
     TESTING = True
+
 
 config = {
     'dev': DevelopmentConfig,
     'test': TestingConfig,
     'prod': ProductionConfig,
-
     'default': DevelopmentConfig
 }

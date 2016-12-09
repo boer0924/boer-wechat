@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-
 '''note wechat'''
 
 import hashlib
 
 token = '123456'
+
 
 def check_signature(signature, timestamp, nonce):
     '''check_signature'''
@@ -12,6 +12,7 @@ def check_signature(signature, timestamp, nonce):
     l.sort()
     s = ''.join(l)
     return hashlib.sha1(s).hexdigest() == signature
+
 
 # test xml parser
 def xml_parser():
@@ -27,5 +28,6 @@ def xml_parser():
     import xml.etree.ElementTree as ET
     tree = ET.fromstring(data)
     return tree.find('ToUserName').text
+
 
 print(xml_parser())

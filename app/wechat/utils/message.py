@@ -5,6 +5,7 @@
 import xml.etree.ElementTree as ET
 import time
 
+
 def msg_recv(data):
     tree = ET.fromstring(data)
     tousername = tree.find('ToUserName').text
@@ -16,23 +17,22 @@ def msg_recv(data):
         if event == 'subscribe':
             pass
         return dict(
-            tousername = tousername,
-            fromusername = fromusername,
-            createtime = createtime,
-            msgtype = msgtype,
-            event = event
-        )
+            tousername=tousername,
+            fromusername=fromusername,
+            createtime=createtime,
+            msgtype=msgtype,
+            event=event)
     else:
         content = tree.find('Content').text
         msgid = tree.find('MsgId').text
         return dict(
-            tousername = tousername,
-            fromusername = fromusername,
-            createtime = createtime,
-            msgtype = msgtype,
-            content = content,
-            msgid = msgid
-        )
+            tousername=tousername,
+            fromusername=fromusername,
+            createtime=createtime,
+            msgtype=msgtype,
+            content=content,
+            msgid=msgid)
+
 
 def msg_send(data):
     tousername = data.get('fromusername')
@@ -65,5 +65,6 @@ def msg_send(data):
         <Content><![CDATA[%s]]></Content>
         </xml>
     '''
-    reply = reply_xml % (tousername, fromusername, createtime, msgtype, content)
+    reply = reply_xml % (tousername, fromusername, createtime, msgtype,
+                         content)
     return reply
